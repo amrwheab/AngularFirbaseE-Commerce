@@ -1,0 +1,74 @@
+.cart {
+  padding: 100px 0;
+}
+.cart h2 {
+  margin-bottom: 30px;
+  text-align: center;
+}
+.table {
+  width: 100%;
+  margin: auto;
+  border: 1px solid;
+}
+.table .th, .table .td, .tdt {
+  border: 1px solid;
+  text-align: center;
+  padding: 10px 0;
+  width: 30%;
+}
+.table .th, .tdt-title {
+  font-size: 17px;
+  font-weight: bold;
+}
+.tr {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.td button:not(:last-of-type) {
+  margin-right: 5px;
+}
+.td {
+  align-self: center;
+  height: 65px;
+  line-height: 2.5;
+}
+.amount {
+  width: 70%;
+  display: inline-block;
+  margin: auto;
+}
+.tdt {
+  width: 50%;
+}
+.min-delete {
+  color: rgb(247, 28, 28);
+  font-size: 20px;
+  cursor: pointer;
+}
+.card-body {
+  min-height: auto;
+}
+.card-img-top {
+  height: 180px;
+  object-fit: cover;
+  object-position: center;
+  cursor: pointer;
+}
+.card {
+  height: 583px;
+}
+.card-title {
+  font-weight: bolder;
+  font-size: 15px;
+}
+.list-group-item a {
+  color: crimson;
+}
+.reff {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

@@ -1,0 +1,217 @@
+.home {
+  padding-bottom: 80px;
+  padding-top: 100px;
+  position: relative;
+  transition: .5s ease-out;
+}
+.sidebar {
+  background-color: #333;
+  color: white;
+  width: 250px;
+  position: fixed;
+  top: 66px;
+  left: 0;
+  bottom: 0;
+  z-index: 2200;
+  height: 100vh;
+  transition: .5s ease-out;
+}
+@media only screen and (max-width: 768px) {
+  .sidebar {
+    top: 53px;
+  }
+}
+.sidebar h4 {
+  text-align: center;
+  padding: 20px 0;
+}
+.sidebar ul .li {
+  font-size: 17px;
+  line-height: 1.8;
+  width: 100%;
+}
+.sidebar ul .li a {
+  display: block;
+  padding-left: 20px;
+  color:#afaaaa;
+  transition: .3s ease-out;
+}
+.sidebar ul .li a:hover,
+.sidebar ul .li a.active {
+  text-decoration: none;
+  background-color: crimson;
+  color: white;
+}
+.sidebar .exchang {
+  position: absolute;
+  right: -25px;
+  top: 100px;
+  background-color: crimson;
+  width: 25px;
+  height: 25px;
+  text-align: center;
+  line-height: 23px;
+  font-size: 20px;
+  cursor: pointer;
+}
+.sidebar .exchang:hover {
+  background-color: #333;
+}
+.mycarousel {
+  overflow: hidden;
+  position: relative;
+  max-height: 450px;
+}
+@media (min-width: 576px){
+  .mycarousel {
+    max-width: 540px;
+  }
+}
+@media (min-width: 768px){
+  .mycarousel {
+    max-width: 720px;
+  }
+}
+@media (min-width: 992px){
+  .mycarousel {
+    max-width: 960px;
+  }
+}
+@media (min-width: 1200px){
+  .mycarousel {
+    max-width: 1140px;
+  }
+}
+
+.mycarousel fa-icon {
+  position: absolute;
+  transform: translateY(-50%);
+  z-index: 3000;
+  color: white;
+  background-color: #dc143c94;
+  font-size: 25px;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: .3s ease-out;
+}
+.mycarousel fa-icon:hover,
+.componant fa-icon.active{
+  background-color: crimson;
+  cursor: pointer;
+}
+.componant fa-icon {
+  position: absolute;
+  transform: translateY(-50%);
+  z-index: 10;
+  color: white;
+  background-color: #dc143c94;
+  font-size: 25px;
+  top: 50%;
+  width: 40px;
+  height: 40px;
+  text-align: center;
+  line-height: 40px;
+  border-radius: 50%;
+  cursor: not-allowed;
+  transition: .3s ease-out;
+}
+.inner-car {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: nowrap;
+  height: 450px;
+  position: relative;
+}
+.inner-car div img {
+  width: 100%;
+}
+.mycarousel .bullets {
+  z-index: 100;
+  position: absolute;
+  bottom: 20px;
+  left: 50%;
+  transform: translateX(-50%);
+  height: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.mycarousel .bullets .bullet {
+  width: 12px;
+  background-color: #dc143c94;
+  color: transparent;
+  border-radius: 50%;
+  border: .5px solid transparent;
+  cursor: pointer;
+  transition: .3s ease-out;
+}
+.mycarousel .bullets .bullet:hover,
+.mycarousel .bullets .bullet.active {
+  background-color: crimson;
+  border-color: white;
+}
+.insideCar {
+  height: 100%;
+  padding: 70px;
+  display: flex;
+  align-items: center;
+  position: relative;
+}
+.insideCar::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, .6);
+}
+.insideCar .car-input {
+  width: 50%;
+  z-index: 100;
+}
+.insideCar .car-input h3 {
+  color: white;
+}
+.insideCar .car-input p {
+  color: #afaaaa;
+  line-height: 1.8;
+}
+.insideCar .car-input a {
+  color: white;
+  background-color: #dc143c94;
+  transition: .3s ease-out;
+}
+.insideCar .car-input a:hover {
+  background-color: crimson;
+  text-decoration: none;
+}
+.componant {
+  margin-top: 70px;
+  position: relative;
+}
+.com-contain {
+  overflow: hidden;
+  touch-action: pan-y !important;
+}
+.com-link {
+  float: right;
+  margin-top: 15px;
+  color: rgb(250, 4, 54);
+  font-size: 17px;
+}
+.com {
+  position: relative;
+  transition: .3s ease-out;
+}
+.reff {
+  width: 100%;
+  height: 80vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}

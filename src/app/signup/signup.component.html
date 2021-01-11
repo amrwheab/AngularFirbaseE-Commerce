@@ -1,0 +1,143 @@
+<div class="signup" *ngIf="signUpPop">
+  <div class="container">
+    <form #signup="ngForm" (submit)="onSub()">
+      <h2>Sign Up</h2>
+      <div class="form-group">
+        <label for="username">Your Name</label>
+        <input class="form-control"
+        type="text"
+        name="username"
+        id="username"
+        #username="ngModel"
+        [(ngModel)]="signupForm.username"
+        required>
+        <div class="alert alert-danger" *ngIf="username.errors?.required && username.touched">Your Name Is Required</div>
+      </div>
+      <div class="form-group">
+        <label for="email">Your Email</label>
+        <input class="form-control"
+        type="email"
+        name="email"
+        id="email"
+        #email="ngModel"
+        [(ngModel)]="signupForm.email"
+        required
+        email>
+        <div class="alert alert-danger" *ngIf="email.errors?.required && email.touched">Your Email Is Required</div>
+        <div class="alert alert-danger" *ngIf="email.errors?.email && email.touched">Your Email Is Not Valid</div>
+      </div>
+      <div class="form-group">
+        <label for="telnum">Your Telephone Number</label>
+        <input class="form-control"
+        type="text"
+        name="telnum"
+        id="telnum"
+        placeholder="01*********"
+        #telnum="ngModel"
+        [(ngModel)]="signupForm.telNum" pattern="^01(0|1|2)\d{8}$">
+        <div class="alert alert-danger" *ngIf="telnum.errors?.pattern && telnum.touched">You Must Type 11 Number Exactly Starts With 01</div>
+      </div>
+      <div class="form-group">
+        <label for="password">Your Password</label>
+        <input class="form-control"
+        type="password"
+        name="password"
+        id="password"
+        #password="ngModel"
+        [(ngModel)]="signupForm.password"
+        required>
+        <div class="alert alert-danger" *ngIf="password.errors?.required && password.touched">Your Password Is Required</div>
+      </div>
+      <div class="form-group">
+        <label for="gender">Your Gender</label>
+        <select name="gender" id="gender" class="form-control" #gender="ngModel" required [(ngModel)]="signupForm.gender">
+          <option value="Male">Male</option>
+          <option value="Female">Female</option>
+        </select>
+        <div class="alert alert-danger" *ngIf="gender.errors?.required && gender.touched">Your Gender Is Required</div>
+      </div>
+      <div class="form-group">
+        <label for="address">Your address</label>
+        <input class="form-control"
+        type="text"
+        name="address"
+        id="address"
+        #username="ngModel"
+        [(ngModel)]="signupForm.address">
+      </div>
+      <input type="submit" class="btn signup-btn" value="Sign Up" [disabled]="signup.invalid">
+      <div class="alert alert-danger" *ngIf="errorMesage">{{errorMesage}}</div>
+    </form>
+  </div>
+</div>
+
+<div *ngIf="!signUpPop">
+  <form #signup="ngForm" (submit)="onSub()" style="width: 100%;margin-bottom: auto;">
+    <h2 style="text-align: left;">Sign Up</h2>
+    <div class="form-group">
+      <label for="username">Your Name</label>
+      <input class="form-control"
+      type="text"
+      name="username"
+      id="username"
+      #username="ngModel"
+      [(ngModel)]="signupForm.username"
+      required>
+      <div class="alert alert-danger" *ngIf="username.errors?.required && username.touched">Your Name Is Required</div>
+    </div>
+    <div class="form-group">
+      <label for="email">Your Email</label>
+      <input class="form-control"
+      type="email"
+      name="email"
+      id="email"
+      #email="ngModel"
+      [(ngModel)]="signupForm.email"
+      required
+      email>
+      <div class="alert alert-danger" *ngIf="email.errors?.required && email.touched">Your Email Is Required</div>
+      <div class="alert alert-danger" *ngIf="email.errors?.email && email.touched">Your Email Is Not Valid</div>
+    </div>
+    <div class="form-group">
+      <label for="telnum">Your Telephone Number</label>
+      <input class="form-control"
+      type="text"
+      name="telnum"
+      id="telnum"
+      placeholder="01*********"
+      #telnum="ngModel"
+      [(ngModel)]="signupForm.telNum" pattern="^01(0|1|2)\d{8}$">
+      <div class="alert alert-danger" *ngIf="telnum.errors?.pattern && telnum.touched">You Must Type 11 Number Exactly Starts With 01</div>
+    </div>
+    <div class="form-group">
+      <label for="password">Your Password</label>
+      <input class="form-control"
+      type="password"
+      name="password"
+      id="password"
+      #password="ngModel"
+      [(ngModel)]="signupForm.password"
+      required>
+      <div class="alert alert-danger" *ngIf="password.errors?.required && password.touched">Your Password Is Required</div>
+    </div>
+    <div class="form-group">
+      <label for="gender">Your Gender</label>
+      <select name="gender" id="gender" class="form-control" #gender="ngModel" required [(ngModel)]="signupForm.gender">
+        <option value="Male">Male</option>
+        <option value="Female">Female</option>
+      </select>
+      <div class="alert alert-danger" *ngIf="gender.errors?.required && gender.touched">Your Gender Is Required</div>
+    </div>
+    <div class="form-group">
+      <label for="address">Your address</label>
+      <input class="form-control"
+      type="text"
+      name="address"
+      id="address"
+      #username="ngModel"
+      [(ngModel)]="signupForm.address">
+    </div>
+    <input type="submit" class="btn signup-btn" value="Sign Up" [disabled]="signup.invalid">
+    <div class="alert alert-danger" *ngIf="errorMesage">{{errorMesage}}</div>
+  </form>
+</div>

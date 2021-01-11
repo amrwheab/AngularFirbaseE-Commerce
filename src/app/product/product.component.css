@@ -1,0 +1,113 @@
+.product {
+  padding-top: 80px;
+  padding-bottom: 50px;
+}
+.prod-contain {
+  padding-top: 50px;
+}
+.prod-head {
+  margin: 10px 0;
+}
+.product-img {
+  max-width: 50%;
+  max-height: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.product-img img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+.prod-date {
+  margin-top: 34px;
+  color: rgb(179, 174, 174);
+}
+.prod-data {
+  color: #6d6c6c;
+  line-height: 1.8;
+}
+.prod-button {
+  margin-top: 30px;
+  border: none;
+  color: white;
+  background-color: crimson;
+  padding: 8px 80px;
+  font-size: 19px;
+  border-radius: 5px;
+}
+.row input[type="text"]{
+  border: 1px solid crimson;
+  border-radius: 5px;
+}
+.row input[type="submit"]{
+  border: 1px solid crimson;
+  background-color: crimson;
+}
+.row input:focus,
+.row button:focus{
+  outline: none;
+  box-shadow: .5px .5px 3.5px rgba(220, 20, 60, 0.767), -.5px -.5px 3.5px rgba(220, 20, 60, 0.767);
+}
+.com-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  overflow: hidden;
+  cursor: pointer;
+}
+.com-img img {
+  width: 100%;
+  height: 100%;
+}
+.comments {
+  margin-top: 50px;
+}
+.com-text {
+  color: #121212;
+  background-color: #ebe6e6;
+  min-height: 50px;
+  border-radius: 15px;
+  padding: 12px;
+  margin-left: 15px;
+  max-width: 80%;
+}
+.com-text span {
+  width: 100%;
+}
+.com-btn {
+  margin-left: 10px;
+  color: white;
+  background-color: crimson;
+  border-radius: 9px;
+}
+.user-name {
+  color: crimson;
+  font-weight: bold;
+  cursor: pointer;
+}
+.com-img:focus, .user-name:focus {
+  outline: none;
+}
+.your-rate {
+  margin-top: 50px;
+}
+.your-rate fa-icon {
+  margin-right: 7px;
+  cursor: pointer;
+}
+.rating {
+  margin-top: 50px;
+  line-height: 2;
+}
+.rating fa-icon {
+  margin-right: 7px;
+  color: rgb(255, 243, 73);
+}
+.cancel-star {
+  color: crimson;
+  margin-left: 45px;
+  cursor: pointer;
+}

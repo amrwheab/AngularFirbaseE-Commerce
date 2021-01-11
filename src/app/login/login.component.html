@@ -1,0 +1,45 @@
+<div class="login" *ngIf="loginBol">
+  <div class="container">
+    <div class="row">
+      <form class="col-md-6" #login='ngForm' (submit)="onSub()">
+        <h2>Log In</h2>
+        <div class="form-group">
+          <label for="email">Your Email</label>
+          <input type="email" id="email" class="form-control" name="email" #email="ngModel" required email [(ngModel)]="formgroup.email">
+          <div *ngIf="email.errors?.required && email.touched" class="alert alert-danger">Your Email Is Required</div>
+          <div *ngIf="email.errors?.email && email.touched" class="alert alert-danger">That Is Not An Email</div>
+        </div>
+        <div class="form-group">
+          <label for="password">Your Password</label>
+          <input type="password" id="password" class="form-control" name="password" #password="ngModel" required [(ngModel)]="formgroup.password">
+          <div *ngIf="password.errors?.required && password.touched" class="alert alert-danger">Your Password Is Required</div>
+        </div>
+        <input type="submit" class="btn login-sub" value="Log In" [disabled]='login.invalid'>
+        <div *ngIf="errMessage" class="alert alert-danger">{{errMessage}}</div>
+      </form>
+      <div class="col-md-6 left">
+        <h3>Welcome Back To Our Community</h3>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Fuga, laudantium incidunt, nisi commodi accusantium nihil quod repellendus et nesciunt perferendis, iure consectetur. Rem dicta iure numquam facilis nisi nemo maxime.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div *ngIf="!loginBol">
+  <form class="col-12" #login='ngForm' (submit)="onSub()">
+    <h2>Log In</h2>
+    <div class="form-group">
+      <label for="email">Your Email</label>
+      <input type="email" id="email" class="form-control" name="email" #email="ngModel" required email [(ngModel)]="formgroup.email">
+      <div *ngIf="email.errors?.required && email.touched" class="alert alert-danger">Your Email Is Required</div>
+      <div *ngIf="email.errors?.email && email.touched" class="alert alert-danger">That Is Not An Email</div>
+    </div>
+    <div class="form-group">
+      <label for="password">Your Password</label>
+      <input type="password" id="password" class="form-control" name="password" #password="ngModel" required [(ngModel)]="formgroup.password">
+      <div *ngIf="password.errors?.required && password.touched" class="alert alert-danger">Your Password Is Required</div>
+    </div>
+    <input type="submit" class="btn login-sub" value="Log In" [disabled]='login.invalid'>
+    <div *ngIf="errMessage" class="alert alert-danger">{{errMessage}}</div>
+  </form>
+</div>

@@ -1,0 +1,61 @@
+
+<p class="alert alert-danger alerting" @slide *ngIf="errNumber">Amount Must Be 1 At Least</p>
+
+  <div *ngIf="cloths.length === 0" class="card-containn" [style]="'width:'+ containWidth">
+    <div *ngFor="let acc of [1,2,3,3,3,3,3,3,3,3,3,3]" class="card flex-width contain-spin" style="width: 245px;">
+      <div class="sk-chase">
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+        <div class="sk-chase-dot"></div>
+      </div>
+    </div>
+  </div>
+
+<div class="card-containn" [style]="'width:'+ containWidth">
+  <div *ngFor="let cloth of cloths; let i = index" class="card flex-width" style="width: 245px;">
+    <div class="img-cont"><img (click)="navToProd(cloth.id)"
+      (mouseenter)="cardTitle.style.color = 'crimson';cardTitle.style.textDecoration = 'underline'"
+      (mouseleave)="cardTitle.style.color = 'black';cardTitle.style.textDecoration = 'none'"
+      [src]="cloth.src" class="card-img-top" [alt]="cloth.name"></div>
+    <div class="card-body">
+      <h5 class="card-title" #cardTitle
+      (mouseenter)="cardTitle.style.color = 'crimson';cardTitle.style.textDecoration = 'underline'"
+      (mouseleave)="cardTitle.style.color = 'black';cardTitle.style.textDecoration = 'none'"
+      (click)="navToProd(cloth.id)">{{cloth.name}}</h5>
+      <div class="option-con">
+        <p class="card-text txt">Some quick example text to build on the card.</p>
+        <span style="display: block;margin-bottom: 5px;">{{cloth.price | currency}}</span>
+        <a class="btn add-to-cart" *ngIf="carting[i]" (click)="setCart(i,null,cloth);alertChange()">Add To Cart</a>
+        <div class="option-con-in">
+        <div class="carting" *ngIf="!carting[i]">
+          <fa-icon title="Delete From Cart" [icon]="faTrashAlt" class="carting-icon" (click)="deleteCart(cloth.id, i)"></fa-icon>
+            <a class="btn add-to-cart mar" (click)="setCart(i,false,cloth)">-</a>
+            <div class="counting">{{amount[i]}}</div>
+            <a class="btn add-to-cart mar" (click)="setCart(i,true,cloth);alertChange()">+</a>
+        </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gray-all" *ngIf="loginConBol()" #grayAll>
+    <div class="login-con">
+      <div class="login-con-inner">
+        <h4 class="text-center">You Have To Be A User To Do This Step</h4>
+        <div class="login-nav">
+          <div class="login-nav-row">
+            <p class="nav-inner" [class.active]="loginNavBol" (click)="loginNavBol = true">Sign In</p>
+            <p class="nav-inner" [class.active]="!loginNavBol" (click)="loginNavBol = false">Sign Up</p>
+          </div>
+        </div>
+        <div class="log-commponant">
+          <app-login *ngIf="loginNavBol"></app-login>
+          <app-signup *ngIf="!loginNavBol"></app-signup>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

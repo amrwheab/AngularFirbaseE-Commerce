@@ -1,0 +1,16 @@
+.signup {
+  padding-top: 80px;
+}
+h2 {
+  margin-bottom: 25px;
+  text-align: center;
+}
+form {
+  width: 60%;
+  margin: auto auto 80px;
+}
+.signup-btn {
+  background-color: crimson;
+  padding: 10px;
+  color: white;
+}

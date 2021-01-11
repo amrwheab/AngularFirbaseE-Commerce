@@ -1,0 +1,111 @@
+<div class="cart" *ngIf="router">
+  <div class="container">
+    <div *ngIf="validPage && validCart">
+      <h2>Your Cart</h2>
+
+        <div class="row">
+          <div class="col-lg-3 col-md-4 col-sm-6 align-self-center" *ngFor="let cart of cartConrent; let i = index">
+            <div class="card" style="width: 17rem;margin: 0 auto 12px;">
+                <div><img class="card-img-top" [routerLink]="'../home/'+cart.type+'/'+cart.id" [src]="cart.prodImg" alt="Card image cap"></div>
+              <div class="card-body">
+                <h6 class="card-title" [routerLink]="'../home/'+cart.type+'/'+cart.id">{{cart.name}}</h6>
+                <p class="card-text">Some quick example text to build on the card title.</p>
+              </div>
+              <ul class="list-group list-group-flush">
+                <li class="list-group-item"><a [routerLink]="'../home/'+cart.type">{{cart.type}}</a></li>
+                <li class="list-group-item">amount: <input type="number"
+                  class="form-control amount"
+                  name="amount"
+                  [(ngModel)]="values[i]"></li>
+                <li class="list-group-item">{{ cart.price | currency}} * {{cart.amount}}</li>
+                <li class="list-group-item">{{cart.amount * cart.price | currency}}</li>
+              </ul>
+              <div class="card-body">
+                <button (click)="updateCart(cart.id, values[i], cart.type, i)"
+                [disabled]="values[i] < 1" class="btn btn-primary mr-3">Update</button>
+                <button (click)="deleteCart(cart.id, cart.type)" class="btn btn-danger">Delete</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <br>
+        <hr>
+        <br>
+        <div class="card" style="height: auto; width: 18rem;">
+          <div class="card-body">
+            <h5 class="card-title">Order</h5>
+            <p class="card-text">The Total Price In Your Cart Is
+              <span style="color: crimson;font-weight: bold;">{{totalPrice | currency}}</span></p>
+            <a (click)="orderBol = true" class="btn btn-primary">Order Now</a>
+          </div>
+        </div>
+
+        <div class="gray-all" #grayAll *ngIf="orderBol" (click)="cancelOrderBol(grayAll, $event)">
+          <div class="login-con" style="width: auto;height: auto;">
+            <div class="login-con-inner">
+              <h6 class="text-center">Are You Sure You Want To Order With Price
+                <span style="color: crimson;font-weight: bold;">{{totalPrice | currency}}</span></h6>
+                <br>
+                <div class="text-center">
+                  <button class="btn btn-primary mr-1" (click)="setOrder()">Yes</button>
+                  <button class="btn btn-danger ml-1" (click)="orderBol = false">No</button>
+                </div>
+            </div>
+          </div>
+        </div>
+
+    </div>
+
+    <div *ngIf="!validCart">
+      <h2 class="text-center h1 my-3">Your Cart Is Still Empty</h2>
+      <div class="text-center">
+        <a routerLink="/home" class="btn btn-primary">Home Page</a>
+      </div>
+    </div>
+
+    <div *ngIf="!validPage">
+      <h2 class="text-center h1 my-3">This Page Is Not Available For Not Users</h2>
+      <div class="text-center">
+        <a routerLink="/login" class="btn btn-primary mr-3">Login Page</a>
+        <a routerLink="/signup" class="btn btn-primary">Sign Up Page</a>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<div style="width: 350px;" *ngIf="!router">
+  <div class="table" *ngIf="validCart && validPage" >
+    <div class="tr">
+      <div class="th">Product Name</div>
+      <div class="th">Amount</div>
+      <div class="th">TP-Price</div>
+      <div class="th">Delete</div>
+    </div>
+    <div class="tr" *ngFor="let cart of cartConrent; let i = index">
+      <div class="td" style="line-height: 1; font-size: 12px;">{{cart.name}}</div>
+      <div class="td">{{cart.amount}}</div>
+      <div class="td price">{{cart.amount * cart.price | currency}}</div>
+      <div class="td">
+        <fa-icon [icon]="faTrashAlt" title="delete" class="min-delete" (click)="deleteCart(cart.id, cart.type)"></fa-icon>
+      </div>
+    </div>
+    <div class="tr">
+      <div class="tdt tdt-title">Total Price</div>
+      <div class="tdt tdt-salary">{{totalPrice | currency}}</div>
+    </div>
+  </div>
+
+  <div *ngIf="!validCart">
+    <h2 class="text-center h1 my-3">Your Cart Is Still Empty</h2>
+  </div>
+
+  <div *ngIf="!validPage">
+    <h2 class="text-center h1 my-3">This Page Is Not Available For Not Users</h2>
+    <div class="text-center">
+      <a routerLink="/login" class="btn btn-primary mr-3">Login Page</a>
+      <a routerLink="/signup" class="btn btn-primary">Sign Up Page</a>
+    </div>
+  </div>
+</div>

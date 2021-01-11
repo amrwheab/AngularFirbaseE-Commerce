@@ -1,0 +1,154 @@
+
+
+<div class="home" [style]="'padding-left:'+homePaddingLeft+';padding-right:'+homePaddingRight">
+  <div class="sidebar" [style]="'left:'+slideShow" *ngIf="!mobileScreen">
+    <fa-icon (click)="slideTogle()" [icon]="faExchangeAlt" class="exchang"></fa-icon>
+    <h4>Categories</h4>
+    <ul class="list-unstyled">
+      <div class="li" *ngFor="let cat of categories"><a [routerLink]="['/home', cat.name]" routerLinkActive="active">{{cat.name}}</a></div>
+    </ul>
+  </div>
+  <div class="container">
+    <app-clothes *ngIf="categ==='clothes'"></app-clothes>
+    <app-accessories *ngIf="categ==='accessories'"></app-accessories>
+    <app-devices *ngIf="categ==='devices'"></app-devices>
+    <app-food *ngIf="categ==='food'"></app-food>
+  </div>
+  <div *ngIf="categ==='main'" class="main">
+    <div class="container">
+      <div class="reff" *ngIf="carouselContent.length === 0">
+        <div class="sk-chase">
+          <div class="sk-chase-dot"></div>
+          <div class="sk-chase-dot"></div>
+          <div class="sk-chase-dot"></div>
+          <div class="sk-chase-dot"></div>
+          <div class="sk-chase-dot"></div>
+          <div class="sk-chase-dot"></div>
+        </div>
+      </div>
+      <div class="mycarousel" #mycarousel *ngIf="carouselContent.length > 0">
+        <fa-icon
+        [icon]="faChevronLeft"
+        style="left: 20px;"
+        (click)="carLeft(pageSize)"></fa-icon>
+        <fa-icon
+        [icon]="faChevronRight"
+        style="right: 20px;"
+        (click)="carRight(pageSize)"></fa-icon>
+        <div class="inner-car" [style]="
+        'width:'+ pageSize*(carouselContent.length+2) + 'px;'+
+        'left:'+(carPosition)+'px;'+
+        'transition:'+carTran">
+          <div [style]="'width:'+pageSize+'px;'+'background-image:url('+carouselContent[carouselContent.length-1].path+');'" class="insideCar">
+            <div class="car-input">
+              <h3>{{carouselContent[carouselContent.length-1].header}}</h3>
+              <p *ngIf="!mobileScreen">{{carouselContent[carouselContent.length-1].text}}</p>
+              <a [routerLink]="'/home'+carouselContent[carouselContent.length-1].route"
+              class="btn">Take A Tour</a>
+            </div>
+          </div>
+          <div [style]="'width:'+pageSize+'px;'+'background-image:url('+car.path+');'" *ngFor="let car of carouselContent;let i = index" class="insideCar">
+            <div class="car-input">
+              <h3>{{car.header}}</h3>
+              <p *ngIf="!mobileScreen">{{car.text}}</p>
+              <a [routerLink]="'/home'+car.route" class="btn" (click)="getTour(i)">Take A Tour</a>
+            </div>
+          </div>
+          <div [style]="'width:'+pageSize+'px;'+'background-image:url('+carouselContent[0].path+');'" class="insideCar">
+            <div class="car-input">
+              <h3>{{carouselContent[0].header}}</h3>
+              <p *ngIf="!mobileScreen">{{carouselContent[0].text}}</p>
+              <a [routerLink]="'/home'+carouselContent[0].route" class="btn" (click)="getTour(0)">Take A Tour</a>
+            </div>
+          </div>
+        </div>
+        <div class="bullets" [style]="'width:' + 12*(carouselContent.length+2)+'px'">
+          <span *ngFor="let carr of carouselContent; let i = index" [class]="'bullet '+carr.class" (click)="bulletClick(i)">.</span>
+        </div>
+      </div>
+
+      <div class="componant">
+        <fa-icon
+        [icon]="faChevronLeft"
+        [class.active]="comCarLActive[0]"
+        style="left: 20px;"
+        (click)="comCarL(0)" *ngIf="!mobileScreen"></fa-icon>
+        <fa-icon
+        [icon]="faChevronRight"
+        [class.active]="comCarRActive[0]"
+        style="right: 20px;"
+        (click)="comCarR(0, acc.containWidth)" *ngIf="!mobileScreen"></fa-icon>
+        <a routerLink="/home/accessories" class="com-link">View More</a>
+        <h2 style="float: left;">Accessories</h2>
+        <div style="clear: both;"></div>
+        <div class="com-contain"
+        (swipe)="swipeAcc($event, 0, acc.containWidth)"
+        >
+          <app-accessories #acc class="com" [style]="'left:'+ comCarVal[0]+'px;'"></app-accessories>
+        </div>
+      </div>
+
+      <div class="componant">
+        <fa-icon
+        [icon]="faChevronLeft"
+        [class.active]="comCarLActive[1]"
+        style="left: 20px;"
+        (click)="comCarL(1)" *ngIf="!mobileScreen"></fa-icon>
+        <fa-icon
+        [icon]="faChevronRight"
+        [class.active]="comCarRActive[1]"
+        style="right: 20px;"
+        (click)="comCarR(1, cloth.containWidth)" *ngIf="!mobileScreen"></fa-icon>
+        <a routerLink="/home/clothes" class="com-link">View More</a>
+        <h2 style="float: left;">Clothes</h2>
+        <div style="clear: both;"></div>
+        <div class="com-contain"
+        (swipe)="swipeAcc($event, 1, cloth.containWidth)"
+        >
+          <app-clothes #cloth class="com" [style]="'left:'+ comCarVal[1]+'px;'"></app-clothes>
+        </div>
+      </div>
+
+      <div class="componant">
+        <fa-icon
+        [icon]="faChevronLeft"
+        [class.active]="comCarLActive[2]"
+        style="left: 20px;"
+        (click)="comCarL(2)" *ngIf="!mobileScreen"></fa-icon>
+        <fa-icon
+        [icon]="faChevronRight"
+        [class.active]="comCarRActive[2]"
+        style="right: 20px;"
+        (click)="comCarR(2, div.containWidth)" *ngIf="!mobileScreen"></fa-icon>
+        <a routerLink="/home/devices" class="com-link">View More</a>
+        <h2 style="float: left;">Devices</h2>
+        <div style="clear: both;"></div>
+        <div class="com-contain"
+        (swipe)="swipeAcc($event, 2, div.containWidth)">
+          <app-devices #div class="com" [style]="'left:'+ comCarVal[2]+'px;'"></app-devices>
+        </div>
+      </div>
+
+      <div class="componant">
+        <fa-icon
+        [icon]="faChevronLeft"
+        [class.active]="comCarLActive[3]"
+        style="left: 20px;"
+        (click)="comCarL(3)" *ngIf="!mobileScreen"></fa-icon>
+        <fa-icon
+        [icon]="faChevronRight"
+        [class.active]="comCarRActive[3]"
+        style="right: 20px;"
+        (click)="comCarR(3, food.containWidth)" *ngIf="!mobileScreen"></fa-icon>
+        <a routerLink="/home/food" class="com-link">View More</a>
+        <h2 style="float: left;">Food</h2>
+        <div style="clear: both;"></div>
+        <div class="com-contain"
+        (swipe)="swipeAcc($event, 3, food.containWidth)">
+          <app-food  #food class="com" [style]="'left:'+ comCarVal[3]+'px;'"></app-food>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</div>

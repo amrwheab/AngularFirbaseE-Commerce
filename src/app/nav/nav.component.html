@@ -1,0 +1,50 @@
+<div class="nav">
+  <div class="container">
+    <div class="nav-content">
+      <h4 routerLink="/home/main">Youne</h4>
+      <ul *ngIf="!mobileScreen">
+        <li><a class="btn" routerLink='/home/main' routerLinkActive='active' title="Home"><fa-icon [icon]="faHome" class="mr-1"></fa-icon>Home</a></li>
+        <li style="position: relative;" (mousemove)="mouseOnCart()" (mouseenter)="mouseOnCart()" (mouseleave)="hoverToggle=false">
+          <a class="btn cart-length-par" routerLink='/cart' routerLinkActive='active' title="Shopping Cart">
+            <span class="cart" *ngIf="alertChg() || hoverToggle" @fade></span>
+            <fa-icon [icon]="faShoppingCart" class="mr-1"></fa-icon>
+            <span class="cart-length" *ngIf="cartlengthshow">{{cartlength}}</span>Cart</a>
+            <div
+            *ngIf="alertChg() || hoverToggle"
+            (mouseenter)="mouseOnCart()"
+            (mouseleave)="hoverToggle=false"
+            @fade
+            class="min-cart-contain">
+              <app-cart style="margin: auto;"></app-cart>
+            </div>
+        </li>
+        <li><a *ngIf="!user" class="btn"routerLink='/login' routerLinkActive='active'><fa-icon [icon]="faSignInAlt" class="mr-1"></fa-icon>Log In</a></li>
+        <li><a *ngIf="!user" class="btn" routerLink="/signup" routerLinkActive="active"><fa-icon [icon]="faUserPlus" class="mr-1"></fa-icon>Sign Up</a></li>
+        <li *ngIf="user" class="user-img" [class.active]="toggleImg">
+          <img #imgRef [src]="userImg || 'assets/def.png'" alt="">
+          <ul #imgOpen *ngIf="toggleImg" class="user-img-open list-unstyled" @fade>
+            <li><a [routerLink]="['/userprofile', userId]">Your Profile</a></li>
+            <!-- <li><a [routerLink]="['/userprofile', userId]">Setting</a></li> -->
+            <li><a (click)="logOut()" title="Sign Out"><fa-icon [icon]="faSignOutAlt" class="mr-1"></fa-icon>Sign Out</a></li>
+          </ul>
+        </li>
+      </ul>
+      <div *ngIf="mobileScreen" style="padding: 15px 0;position: relative;">
+        <fa-icon #mobIcon [icon]="faBars" (click)="toggleImg = !toggleImg" style="cursor: pointer;"></fa-icon>
+        <ul class="user-img-open list-unstyled" *ngIf="toggleImg" @fade [style]="'right: -12px;top: 34px;width:' + (mobnav-20) + 'px;'">
+          <li><a routerLink='/home/main' (click)="toggleImg = !toggleImg" title="Home"><fa-icon [icon]="faHome" class="mr-1"></fa-icon>Home</a></li>
+          <li style="position: relative;">
+            <a routerLink='/cart' (click)="toggleImg = !toggleImg" title="Shopping Cart">
+              <fa-icon [icon]="faShoppingCart" class="mr-1"></fa-icon>
+              <span class="cart-length" style="color: white;" *ngIf="cartlengthshow">{{cartlength}}</span>Cart</a>
+          </li>
+          <li><a *ngIf="!user" routerLink='/login' (click)="toggleImg = !toggleImg"><fa-icon [icon]="faSignInAlt" class="mr-1"></fa-icon>Log In</a></li>
+        <li><a *ngIf="!user" routerLink="/signup" (click)="toggleImg = !toggleImg"><fa-icon [icon]="faUserPlus" class="mr-1"></fa-icon>Sign Up</a></li>
+          <li *ngIf="user"><a [routerLink]="['/userprofile', userId]" (click)="toggleImg = !toggleImg"><fa-icon [icon]="faUser" class="mr-1"></fa-icon>Your Profile</a></li>
+            <!-- <li *ngIf="user"><a [routerLink]="['/userprofile', userId]" (click)="toggleImg = !toggleImg"><fa-icon [icon]="faCog" class="mr-1"></fa-icon>Setting</a></li> -->
+            <li *ngIf="user"><a (click)="logOut();toggleImg = !toggleImg" title="Sign Out"><fa-icon [icon]="faSignOutAlt" class="mr-1"></fa-icon>Sign Out</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>

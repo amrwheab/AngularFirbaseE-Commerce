@@ -1,0 +1,25 @@
+.login {
+  padding: 120px 0;
+}
+h2 {
+  margin-bottom: 20px;
+}
+.left {
+  padding: 50px;
+}
+p {
+  font-size: 17px;
+  color: rgb(165, 163, 163);
+  line-height: 1.8;
+}
+.login-sub {
+  background-color: crimson;
+  padding: 10px;
+  color: white;
+}
+@media only screen and (max-width: 768px) {
+  .left {
+    margin-top: 30px;
+    padding: 0 15px;
+  }
+}

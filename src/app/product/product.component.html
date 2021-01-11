@@ -1,0 +1,216 @@
+<div class="product">
+  <div class="container">
+    <div class="row">
+      <h2 class="prod-head col-md-6">{{product.data['name']}}</h2>
+      <span class="col-md-6 prod-date" *ngIf="product.id">31/10/2018</span>
+    </div>
+  </div>
+  <div class="prod-contain">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6" *ngIf="!product.id">
+          <div style="width: 100%; height: 200px;display:flex;justify-content: center;align-items:center;">
+            <div class="sk-chase">
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="product.id">
+          <div class="product-img"><img [src]="product.data['src']" alt=""></div>
+        </div>
+        <div class="col-md-6" *ngIf="!product.id">
+          <div style="width: 100%; height: 200px;display:flex;justify-content: center;align-items:center;">
+            <div class="sk-chase">
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+              <div class="sk-chase-dot"></div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="product.id">
+          <p class="prod-data">Lorem ipsum dolor, Lorem ipsum dolor sit amet consectetur adipisicing elit. Saepe enim ducimus possimus dolore cumque a? Natus, ipsa est! Deleniti quia temporibus nostrum voluptatum placeat amet quibusdam minus error quos dolorum. Lorem ipsum dolor sit amet consectetur adipisicing elit. Aspernatur sint esse quibusdam consectetur doloribus nisi dolorem adipisicing elit. Tempora, vero officia! Pariatur fugiat velit possimus odit repellat voluptates vero quos a voluptatum, cumque magnam accusamus nesciunt voluptatibus quaerat ab nostrum!</p>
+
+          <p style="font-size: 20px; color: crimson; font-weight: bold;">{{product.data['price'] | currency}}</p>
+          <div class="prod-option" *ngIf="!removeFromCart">
+            <div class="row">
+              <button class="prod-button col-10" (click)="addToCartMeth()">Add To Cart</button>
+            </div>
+          </div>
+          <div class="prod-option" *ngIf="removeFromCart">
+            <div class="row">
+              <p class="col-2" style="color: #121212; font-size: 19px;">Amount: </p>
+              <input type="text" name="amount" [(ngModel)]="amountNum" #amount="ngModel" class="col-5" pattern="^([1-9][0-9]*)+$" required>
+              <input (click)="updateCartMeth()" type="submit" class="btn btn-primary ml-4 update-input" value="Update" [disabled]="amount.invalid">
+              <p class="alert alert-danger col-12" *ngIf="amount.errors">Amount is Required And Must Be Number Which Bigger Than 0</p>
+              <button class="prod-button col-10" style="background-color: orangered;" (click)="removeFromCartMeth()" >Remove From Cart</button>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-6" *ngIf="product.id">
+          <div class="your-rate">
+            <h3>Your Rate</h3>
+            <span #star1
+            [style]="'color:'+ starColor[0]"
+            (click)="rate(1)"
+            (mouseenter)="star1.style.color = 'rgb(255, 243, 73)';
+            star2.style.color = 'black';
+            star3.style.color = 'black';
+            star4.style.color = 'black';
+            star5.style.color = 'black';"
+            (mouseleave)="star1.style.color = starColor[0];
+            star2.style.color = starColor[1];
+            star3.style.color = starColor[2];
+            star4.style.color = starColor[3];
+            star5.style.color = starColor[4];">
+              <fa-icon [icon]="faStar"></fa-icon>
+            </span>
+            <span #star2
+            [style]="'color:'+ starColor[1]"
+            (click)="rate(2)"
+            (mouseenter)="star1.style.color = 'rgb(255, 243, 73)';
+            star2.style.color = 'rgb(255, 243, 73)';
+            star3.style.color = 'black';
+            star4.style.color = 'black';
+            star5.style.color = 'black';"
+            (mouseleave)="star1.style.color = starColor[0];
+            star2.style.color = starColor[1];
+            star3.style.color = starColor[2];
+            star4.style.color = starColor[3];
+            star5.style.color = starColor[4];">
+              <fa-icon [icon]="faStar"></fa-icon>
+            </span>
+            <span #star3
+            [style]="'color:'+ starColor[2]"
+            (click)="rate(3)"
+            (mouseenter)="star1.style.color = 'rgb(255, 243, 73)';
+            star2.style.color = 'rgb(255, 243, 73)';
+            star3.style.color = 'rgb(255, 243, 73)';
+            star4.style.color = 'black';
+            star5.style.color = 'black';"
+            (mouseleave)="star1.style.color = starColor[0];
+            star2.style.color = starColor[1];
+            star3.style.color = starColor[2];
+            star4.style.color = starColor[3];
+            star5.style.color = starColor[4];">
+              <fa-icon [icon]="faStar"></fa-icon>
+            </span>
+            <span #star4
+            [style]="'color:'+ starColor[3]"
+            (click)="rate(4)"
+            (mouseenter)="star1.style.color = 'rgb(255, 243, 73)';
+            star2.style.color = 'rgb(255, 243, 73)';
+            star3.style.color = 'rgb(255, 243, 73)';
+            star4.style.color = 'rgb(255, 243, 73)';
+            star5.style.color = 'black';"
+            (mouseleave)="star1.style.color = starColor[0];
+            star2.style.color = starColor[1];
+            star3.style.color = starColor[2];
+            star4.style.color = starColor[3];
+            star5.style.color = starColor[4];">
+              <fa-icon [icon]="faStar"></fa-icon>
+            </span>
+            <span #star5
+            [style]="'color:'+ starColor[4]"
+            (click)="rate(5)"
+            (mouseenter)="star1.style.color = 'rgb(255, 243, 73)';
+            star2.style.color = 'rgb(255, 243, 73)';
+            star3.style.color = 'rgb(255, 243, 73)';
+            star4.style.color = 'rgb(255, 243, 73)';
+            star5.style.color = 'rgb(255, 243, 73)';"
+            (mouseleave)="star1.style.color = starColor[0];
+            star2.style.color = starColor[1];
+            star3.style.color = starColor[2];
+            star4.style.color = starColor[3];
+            star5.style.color = starColor[4];">
+              <fa-icon [icon]="faStar"></fa-icon>
+            </span>
+
+            <a class="cancel-star" *ngIf="starCheck" (click)="rate(10)">Cancel</a>
+          </div>
+          <div class="rating">
+            <h3>Rating</h3>
+            <div class="five-star">
+              <fa-icon [icon]="faStar"></fa-icon>
+              <fa-icon [icon]="faStar"></fa-icon>
+              <fa-icon [icon]="faStar"></fa-icon>
+              <fa-icon [icon]="faStar"></fa-icon>
+              <fa-icon [icon]="faStar"></fa-icon>
+              <span>{{product.data['star5'].length - 1}}</span>
+            </div>
+            <div class="four-star">
+              <fa-icon [icon]="faStar"></fa-icon>
+              <fa-icon [icon]="faStar"></fa-icon>
+              <fa-icon [icon]="faStar"></fa-icon>
+              <fa-icon [icon]="faStar"></fa-icon>
+              <span>{{product.data['star4'].length - 1}}</span>
+            </div>
+            <div class="three-star">
+              <fa-icon [icon]="faStar"></fa-icon>
+              <fa-icon [icon]="faStar"></fa-icon>
+              <fa-icon [icon]="faStar"></fa-icon>
+              <span>{{product.data['star3'].length - 1}}</span>
+            </div>
+            <div class="two-star">
+              <fa-icon [icon]="faStar"></fa-icon>
+              <fa-icon [icon]="faStar"></fa-icon>
+              <span>{{product.data['star2'].length - 1}}</span>
+            </div>
+            <div class="one-star">
+              <fa-icon [icon]="faStar"></fa-icon>
+              <span>{{product.data['star1'].length - 1}}</span>
+            </div>
+          </div>
+        </div>
+
+        <div class="col-md-6" *ngIf="product.id">
+          <div class="comments">
+            <h4 class="my-4">Comments</h4>
+            <p *ngIf="comments.length === 0">No Comments Until Now</p>
+            <div *ngFor="let com of comments; let i = index">
+              <div class="row">
+                <div class="com-img" [routerLink]="routeToUser(com.userId)"><img [src]="userImages[i] || 'assets/def.png'" alt=""></div>
+                <p class="com-text">
+                  <a class="user-name" [routerLink]="routeToUser(com.userId)">{{userName[i]}}</a><br />
+                  <span>{{com.comment}}</span>
+                </p>
+              </div>
+          </div>
+          <div class="form-group">
+            <div class="row">
+              <input type="text" class="form-control col" placeholder="Add Your Comment" [(ngModel)]="commInput">
+              <button class="btn com-btn" (click)="addComment()">Add</button>
+              <p class="alert alert-danger" *ngIf="commentError">Write Your Comment</p>
+            </div>
+          </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="gray-all" *ngIf="loginConBol()" #grayAll>
+    <div class="login-con">
+      <div class="login-con-inner">
+        <h4 class="text-center">You Have To Be A User To Do This Step</h4>
+        <div class="login-nav">
+          <div class="login-nav-row">
+            <p class="nav-inner" [class.active]="loginNavBol" (click)="loginNavBol = true">Sign In</p>
+            <p class="nav-inner" [class.active]="!loginNavBol" (click)="loginNavBol = false">Sign Up</p>
+          </div>
+        </div>
+        <div class="log-commponant">
+          <app-login *ngIf="loginNavBol"></app-login>
+          <app-signup *ngIf="!loginNavBol"></app-signup>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
